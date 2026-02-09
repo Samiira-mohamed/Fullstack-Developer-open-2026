@@ -1,0 +1,13 @@
+sequenceDiagram
+    participant Browser
+    participant Server
+
+    Note right of Browser: User types new note and clicks Save
+
+    Browser->>Browser: JS creates note object
+    Browser->>Browser: JS updates notes list (renderNotes)
+
+    Browser->>Server: POST /new_note_spa
+    activate Server
+    Server-->>Browser: 201 Created
+    deactivate Server
