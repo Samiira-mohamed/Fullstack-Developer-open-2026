@@ -1,0 +1,20 @@
+sequenceDiagram
+    participant Browser
+    participant Server
+
+    Browser->>Server: GET /spa
+    activate Server
+    Server-->>Browser: HTML document
+    deactivate Server
+
+    Browser->>Server: GET /spa.js
+    activate Server
+    Server-->>Browser: JavaScript file
+    deactivate Server
+
+    Note right of Browser: Browser executes JS to fetch notes
+
+    Browser->>Server: GET /data.json
+    activate Server
+    Server-->>Browser: ["s1"]
+    deactivate Server
