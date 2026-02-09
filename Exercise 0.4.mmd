@@ -1,0 +1,35 @@
+sequenceDiagram
+    participant Browser
+    participant Server
+
+    Browser->>Server: GET /notes
+    activate Server
+    Server-->>Browser: HTML document
+    deactivate Server
+
+    Browser->>Server: GET /main.css
+    activate Server
+    Server-->>Browser: CSS file
+    deactivate Server
+
+    Browser->>Server: GET /main.js
+    activate Server
+    Server-->>Browser: JavaScript file
+    deactivate Server
+
+    Note right of Browser: Browser executes JS to fetch notes data
+
+    Browser->>Server: GET /data.json
+    activate Server
+    Server-->>Browser: [{ "content": "HTML is easy", "date": "2023-1-1" }, ... ]
+    deactivate Server
+
+    Browser->>Server: POST /new_note (user submits new note)
+    activate Server
+    Server-->>Browser: 302 Redirect /notes
+    deactivate Server
+
+    Browser->>Server: GET /notes
+    activate Server
+    Server-->>Browser: HTML document (page reload)
+    deactivate Server
